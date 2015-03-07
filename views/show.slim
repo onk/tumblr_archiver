@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title TumblrArchiver
+
+  body
+    a[href="/#{@post.id + 1}"] next
+    table
+      - @post.photos.each_slice(2) do |images|
+        tr
+          - images.each do |image|
+            td
+              img[src=(image.filename) width="200"]
+
+    table
+      - photo = @post.photos.first
+      - photo.suggest.each_slice(4) do |hoges|
+        tr
+          - hoges.each do |photo, rate|
+            td
+              img[src=(photo.filename) width="50"]
+            td
+              = rate.round(5)
+

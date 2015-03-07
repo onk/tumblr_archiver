@@ -27,4 +27,9 @@ class App < Sinatra::Base
     @image_files = Photo.all
     slim :index
   end
+
+  get "/:id" do
+    @post = Post.find(params[:id])
+    slim :show
+  end
 end
