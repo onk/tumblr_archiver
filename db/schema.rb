@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307061136) do
+ActiveRecord::Schema.define(version: 20150307133628) do
 
   create_table "photos", force: :cascade do |t|
     t.integer "original_post_id", limit: 8,   null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150307061136) do
     t.integer "width",            limit: 4,   null: false
     t.integer "height",           limit: 4,   null: false
     t.string  "url",              limit: 255, null: false
+    t.string  "average_hash",     limit: 255
   end
 
   add_index "photos", ["post_id"], name: "post_id", using: :btree
