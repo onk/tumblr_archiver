@@ -3,6 +3,3 @@
 *   未タグの画像一覧と google 画像検索へのリンクを埋めて、人名のタグ付けを楽にしたい
     *   ロゴ入りの画像はロゴなしものを類似画像検索で見つけたい
 *   一致画像を tumblr 上から delete したい
-*   類似画像を出してみたい
-    *   http://qiita.com/hurutoriya/items/88a16d36bafa8d6360e2
-    *   average hash 簡単で面白いな
