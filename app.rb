@@ -23,7 +23,7 @@ class App < Sinatra::Base
   configure :development do
     require "sinatra/reloader"
     register Sinatra::Reloader
-    Slim::Engine.default_options[:pretty] = true
+    Slim::Engine.options[:pretty] = true
   end
 
   get "/" do
