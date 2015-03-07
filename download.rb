@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+$LOAD_PATH.push File.expand_path(__dir__)
 require "bundler/setup"
 require "open-uri"
 Bundler.require
@@ -21,11 +22,24 @@ def fetch_urls
   while(offset < total_posts) do
     json = @client.posts("mayumayu.tumblr.com", type: :photo, offset: offset)
     total_posts = json["total_posts"]
-    json["posts"].each do |post|
-      next unless post["photos"]
-      post["photos"].each do |photo|
+    json["posts"].each do |post_json|
+      next unless post_json["photos"]
+
+      post = Post.find_or_create_by(original_id: post_json["id"]) do |p|
+        p.url         = post_json["post_url"]
+        p.posted_at   = Time.at(post_json["timestamp"])
+        p.photo_count = post_json["photos"].count
+      end
+
+      post_json["photos"].each do |photo|
         original = photo["original_size"] || photo["alt_sizes"].max_by{|j| j["width"]}
         urls << original["url"]
+
+        photo = post.photos.find_or_create_by(url: original["url"]) do |p|
+          p.original_post_id = post_json["id"]
+          p.width            = original["width"]
+          p.height           = original["height"]
+        end
       end
     end
     offset += per_page
@@ -52,7 +66,22 @@ def download(urls)
   end
 end
 
+def initialize_database
+  path = File.join(__dir__, "config/database.yml")
+  spec = YAML.load_file(path) || {}
+  ActiveRecord::Base.configurations = spec.stringify_keys
+  ActiveRecord::Base.establish_connection(:development)
+end
+
+def require_models
+  Dir.glob("models/**/*.rb").each do |f|
+    require f
+  end
+end
+
 def main
+  initialize_database
+  require_models
   auth
   urls = fetch_urls
   download(urls)
