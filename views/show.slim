@@ -6,11 +6,29 @@ html
   body
     a[href="/#{@post.id + 1}"] next
     table
-      - @post.photos.each_slice(2) do |images|
+      - @post.photos.each_slice(2) do |photos|
         tr
-          - images.each do |image|
+          - photos.each do |photo|
             td
-              img[src=(image.filename) width="200"]
+              img[src=(photo.filename) width="200"]
+            td
+              table[border="1"]
+                tr
+                  th photo_id
+                  td = photo.id
+                tr
+                  th actor
+                  td = photo.actor.try(:name)
+                tr
+                  th size
+                  td = "#{photo.width}x#{photo.height}"
+                tr
+                  th posted_at
+                  td = @post.posted_at
+                tr
+                  th tumblr url
+                  td
+                    a[href=(@post.url)] = @post.url
 
     table
       - photo = @post.photos.first
