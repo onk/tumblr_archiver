@@ -1,5 +1,6 @@
 class Photo < ActiveRecord::Base
   belongs_to :post
+  belongs_to :actor
 
   def filename
     "./archive/#{File.basename(url)}"
