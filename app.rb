@@ -1,7 +1,4 @@
 require "sinatra/base"
-require "slim"
-require "yaml"
-require "active_record"
 
 def initialize_database
   path = File.join(__dir__, "config/database.yml")
