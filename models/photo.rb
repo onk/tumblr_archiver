@@ -2,6 +2,6 @@ class Photo < ActiveRecord::Base
   belongs_to :post
 
   def filename
-    File.basename(url)
+    "./archive/#{File.basename(url)}"
   end
 end
