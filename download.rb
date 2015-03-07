@@ -1,6 +1,7 @@
-# bundle exec ruby app.rb
-Bundler.require
+#!/usr/bin/env ruby
+require "bundler/setup"
 require "open-uri"
+Bundler.require
 def auth
   Tumblr.configure do |config|
     config.consumer_key = "CzARxuVpLCbPy3oC07I022FK1UEfhUMmkjg7lYmMFat3Hbv6JQ"
