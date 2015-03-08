@@ -1,3 +1,34 @@
+# ## Schema Information
+#
+# Table name: `photos`
+#
+# ### Columns
+#
+# Name                    | Type               | Attributes
+# ----------------------- | ------------------ | ---------------------------
+# **`id`**                | `integer`          | `not null, primary key`
+# **`original_post_id`**  | `integer`          | `not null`
+# **`post_id`**           | `integer`          | `not null`
+# **`actor_id`**          | `integer`          |
+# **`width`**             | `integer`          | `not null`
+# **`height`**            | `integer`          | `not null`
+# **`url`**               | `string(255)`      | `not null`
+# **`average_hash`**      | `string(255)`      |
+# **`created_at`**        | `datetime`         | `not null`
+# **`updated_at`**        | `datetime`         | `not null`
+#
+# ### Indexes
+#
+# * `actor_id`:
+#     * **`actor_id`**
+# * `post_id`:
+#     * **`post_id`**
+# * `url`:
+#     * **`url`**
+# * `width`:
+#     * **`width`**
+#
+
 class Photo < ActiveRecord::Base
   belongs_to :post
   belongs_to :actor
