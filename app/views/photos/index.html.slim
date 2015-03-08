@@ -1,0 +1,6 @@
+table
+  - @photos.each_slice(5) do |photo_array|
+    tr
+      - photo_array.each do |photo|
+        td
+          = image_tag(photo.filename, width: 200)
