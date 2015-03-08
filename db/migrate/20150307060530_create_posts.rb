@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string   :url,                   null: false
       t.datetime :posted_at,             null: false
       t.integer  :photo_count,           null: false, default: 1
+      t.timestamps null: false
     end
     add_index :posts, :original_id, unique: true
     add_index :posts, :url

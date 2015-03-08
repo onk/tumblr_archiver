@@ -6,6 +6,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.integer  :width,                      null: false
       t.integer  :height,                     null: false
       t.string   :url,                        null: false
+      t.timestamps null: false
     end
     add_index :photos, :post_id
     add_index :photos, :url

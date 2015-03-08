@@ -14,17 +14,21 @@
 ActiveRecord::Schema.define(version: 20150307232055) do
 
   create_table "actors", force: :cascade do |t|
-    t.string "name", limit: 255, null: false
+    t.string   "name",       limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "photos", force: :cascade do |t|
-    t.integer "original_post_id", limit: 8,   null: false
-    t.integer "post_id",          limit: 4,   null: false
-    t.integer "actor_id",         limit: 4
-    t.integer "width",            limit: 4,   null: false
-    t.integer "height",           limit: 4,   null: false
-    t.string  "url",              limit: 255, null: false
-    t.string  "average_hash",     limit: 255
+    t.integer  "original_post_id", limit: 8,   null: false
+    t.integer  "post_id",          limit: 4,   null: false
+    t.integer  "actor_id",         limit: 4
+    t.integer  "width",            limit: 4,   null: false
+    t.integer  "height",           limit: 4,   null: false
+    t.string   "url",              limit: 255, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "average_hash",     limit: 255
   end
 
   add_index "photos", ["actor_id"], name: "actor_id", using: :btree
@@ -37,6 +41,8 @@ ActiveRecord::Schema.define(version: 20150307232055) do
     t.string   "url",         limit: 255,             null: false
     t.datetime "posted_at",                           null: false
     t.integer  "photo_count", limit: 4,   default: 1, null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "posts", ["original_id"], name: "original_id", unique: true, using: :btree
