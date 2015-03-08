@@ -1,0 +1,24 @@
+# デフォルトはルート .rubocop.yml のを使い、specでだけ適用したいルールは spec/.rubocop.yml に追加する
+inherit_from:
+  - ../.rubocop.yml
+
+# rspecのDSLで { 〜 } でメソッドチェーン多用するので許可する
+Style/Blocks:
+  Enabled: false
+Style/MultilineBlockChain:
+  Enabled: false
+
+# エラーを握りつぶした後の状態について検証するのに後置rescueをよく使うので許可する
+# example)
+#  it "エラー発生後にmaking_receiptが呼ばれること" do
+#    # subjectでエラーが投げられた後の処理についてテストをしたいので、ここでは握りつぶす
+#    subject rescue nil
+#    expect(manager).to have_received(:making_receipt).once
+#  end
+Style/RescueModifier:
+  Enabled: false
+
+# ワンライナーitを書けるようにセミコロンを許可
+Style/Semicolon:
+  AllowAsExpressionSeparator: true
+
