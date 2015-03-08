@@ -23,4 +23,14 @@
 #
 
 class User < ActiveRecord::Base
+  def self.create_or_update_with_omniauth(auth)
+    user = User.find_or_initialize_by(provider: auth["provider"], provider_user_id: auth["uid"])
+
+    user.name               = auth["info"]["nickname"]
+    user.oauth_token        = auth["credentials"]["token"]
+    user.oauth_token_secret = auth["credentials"]["secret"]
+    user.save!
+
+    user
+  end
 end
