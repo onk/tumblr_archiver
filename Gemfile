@@ -8,6 +8,7 @@ gem "jbuilder"
 gem "jquery-rails"
 gem "kaminari"
 gem "mysql2"
+gem "oauth", require: nil
 gem "sass-rails"
 gem "slim-rails"
 gem "turbolinks"
