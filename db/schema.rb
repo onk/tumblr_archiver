@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20150307232055) do
     t.integer  "width",            limit: 4,   null: false
     t.integer  "height",           limit: 4,   null: false
     t.string   "url",              limit: 255, null: false
+    t.string   "average_hash",     limit: 255
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.string   "average_hash",     limit: 255
   end
 
   add_index "photos", ["actor_id"], name: "actor_id", using: :btree
