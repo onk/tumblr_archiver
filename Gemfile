@@ -3,17 +3,31 @@ source "https://rubygems.org"
 gem "rails", "4.2.0"
 
 gem "coffee-rails"
+gem "global"
 gem "jbuilder"
 gem "jquery-rails"
+gem "kaminari"
 gem "mysql2"
 gem "sass-rails"
+gem "slim-rails"
 gem "turbolinks"
 gem "uglifier"
 
-group :development, :test do
+group :development do
+  gem "annotate"
   gem "byebug"
+  gem "pry-byebug"
+  gem "pry-doc"
+  gem "pry-rails", group: :test
+  gem "pry-stack_explorer"
+  gem "rubocop"
   gem "spring"
   gem "web-console"
+end
+
+group :test do
+  gem "rspec-rails", group: :development
+  gem "factory_girl_rails", group: :development
 end
 
 group :doc do
