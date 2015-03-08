@@ -46,6 +46,6 @@ class Photo < ActiveRecord::Base
       else
         [photo, 0]
       end
-    }.sort_by{|a| -a[1]}.take(16)
+    }.sort_by { |a| -a[1] }.take(16)
   end
 end
