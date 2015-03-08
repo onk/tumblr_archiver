@@ -1,11 +1,13 @@
 source "https://rubygems.org"
 
-gem "activerecord"
+gem "rails", "4.2.0"
+
 gem "mysql2"
 gem "oauth"
-gem "pry"
 gem "rmagick"
-gem "sinatra", require: nil
-gem "sinatra-contrib"
-gem "slim"
+gem "slim-rails"
 gem "tumblr_client"
+
+group :development do
+  gem "pry-rails"
+end
