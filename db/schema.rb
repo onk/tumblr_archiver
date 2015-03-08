@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307232055) do
+ActiveRecord::Schema.define(version: 20150308224042) do
 
   create_table "actors", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
@@ -48,5 +48,17 @@ ActiveRecord::Schema.define(version: 20150307232055) do
   add_index "posts", ["original_id"], name: "original_id", unique: true, using: :btree
   add_index "posts", ["posted_at"], name: "posted_at", using: :btree
   add_index "posts", ["url"], name: "url", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",               limit: 255, null: false
+    t.string   "provider",           limit: 255, null: false
+    t.string   "provider_user_id",   limit: 255, null: false
+    t.string   "oauth_token",        limit: 255, null: false
+    t.string   "oauth_token_secret", limit: 255, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "users", ["provider", "provider_user_id"], name: "provider_and_provider_user_id", unique: true, using: :btree
 
 end
