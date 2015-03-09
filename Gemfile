@@ -11,6 +11,8 @@ gem "mysql2"
 gem "omniauth"
 gem "omniauth-tumblr"
 gem "sass-rails"
+gem "sidekiq"
+gem "sinatra", require: false
 gem "slim-rails"
 gem "turbolinks"
 gem "uglifier"
