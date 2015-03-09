@@ -3,4 +3,4 @@ table
     tr
       - photo_array.each do |photo|
         td
-          = image_tag(photo.filename, width: 200)
+          = image_tag(photo.image.url, width: 200)

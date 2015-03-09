@@ -2,7 +2,7 @@
 table
   tr
     td
-      = image_tag(@photo.filename, width: 200)
+      = image_tag(@photo.image.url, width: 200)
     td
       table[border="1"]
         tr
@@ -27,7 +27,7 @@ table
     tr
       - photo_array.each do |photo, rate|
         td
-          = image_tag(photo.filename, width: 50)
+          = image_tag(photo.image.url, width: 50)
         td
           = rate.round(5)
 

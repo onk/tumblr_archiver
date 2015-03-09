@@ -21,7 +21,7 @@ class FetchPhotosJob < ActiveJob::Base
   end
 
   def fetch_urls
-    @urls = []
+    @photos = []
 
     per_page = 20
     offset = 0
@@ -40,13 +40,15 @@ class FetchPhotosJob < ActiveJob::Base
 
         post_json["photos"].each do |photo|
           original = photo["original_size"] || photo["alt_sizes"].max_by{|j| j["width"]}
-          @urls << original["url"]
 
-          photo = post.photos.find_or_create_by(user_id: @user.id, url: original["url"]) do |p|
+          photo = post.photos.find_or_initialize_by(user_id: @user.id, url: original["url"]) do |p|
             p.original_post_id = post_json["id"]
             p.width            = original["width"]
             p.height           = original["height"]
           end
+          photo[:image] = File.basename(original["url"])
+          photo.save
+          @photos << photo
         end
       end
       offset += per_page
@@ -55,14 +57,12 @@ class FetchPhotosJob < ActiveJob::Base
   end
 
   def download
-    FileUtils.mkdir_p(Rails.root.join("archive"))
-
-    total_url = @urls.count
-    @urls.each do |url|
-      filename = Rails.root.join("archive", File.basename(url))
+    @photos.each do |photo|
+      filename = photo.image.path
       unless File.exist?(filename)
         begin
-          File.binwrite(filename, Net::HTTP.get_response(URI.parse(url)).body)
+          FileUtils.mkdir_p(File.dirname(photo.image.path))
+          File.binwrite(filename, Net::HTTP.get_response(URI.parse(photo.url)).body)
         rescue => e
           Rails.logger.error(e)
         end

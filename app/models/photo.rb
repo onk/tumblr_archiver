@@ -34,12 +34,10 @@
 #
 
 class Photo < ActiveRecord::Base
+  mount_uploader :image, ImageUploader
+
   belongs_to :post
   belongs_to :actor
-
-  def filename
-    "./archive/#{File.basename(url)}"
-  end
 
   def suggest
     (Photo.all.to_a - [self]).map { |photo|

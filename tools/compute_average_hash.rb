@@ -17,7 +17,7 @@ def require_models
 end
 
 def calc_hash(photo)
-  original = Magick::Image.read(photo.filename)[0]
+  original = Magick::Image.read(photo.image.current_path)[0]
 
   # 16x16 にリサイズして二値化 (16bitなので半分の 2**15 を閾値に)
   img = original.resize(16, 16).threshold(32768)
