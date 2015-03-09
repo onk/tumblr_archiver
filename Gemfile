@@ -14,6 +14,7 @@ gem "sass-rails"
 gem "sidekiq"
 gem "sinatra", require: false
 gem "slim-rails"
+gem "tumblr_client", require: false
 gem "turbolinks"
 gem "uglifier"
 
