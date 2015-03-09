@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308224042) do
+ActiveRecord::Schema.define(version: 20150309010607) do
 
   create_table "actors", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150308224042) do
   end
 
   create_table "photos", force: :cascade do |t|
+    t.integer  "user_id",          limit: 4,   null: false
     t.integer  "original_post_id", limit: 8,   null: false
     t.integer  "post_id",          limit: 4,   null: false
     t.integer  "actor_id",         limit: 4
@@ -31,12 +32,13 @@ ActiveRecord::Schema.define(version: 20150308224042) do
     t.datetime "updated_at",                   null: false
   end
 
-  add_index "photos", ["actor_id"], name: "actor_id", using: :btree
   add_index "photos", ["post_id"], name: "post_id", using: :btree
-  add_index "photos", ["url"], name: "url", using: :btree
+  add_index "photos", ["user_id", "actor_id"], name: "user_id_and_actor_id", using: :btree
+  add_index "photos", ["user_id", "url"], name: "user_id_and_url", using: :btree
   add_index "photos", ["width"], name: "width", using: :btree
 
   create_table "posts", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4,               null: false
     t.integer  "original_id", limit: 8,               null: false
     t.string   "url",         limit: 255,             null: false
     t.datetime "posted_at",                           null: false
@@ -45,9 +47,9 @@ ActiveRecord::Schema.define(version: 20150308224042) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "posts", ["original_id"], name: "original_id", unique: true, using: :btree
-  add_index "posts", ["posted_at"], name: "posted_at", using: :btree
-  add_index "posts", ["url"], name: "url", using: :btree
+  add_index "posts", ["user_id", "original_id"], name: "user_id_and_original_id", unique: true, using: :btree
+  add_index "posts", ["user_id", "posted_at"], name: "user_id_and_posted_at", using: :btree
+  add_index "posts", ["user_id", "url"], name: "user_id_and_url", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",               limit: 255, null: false

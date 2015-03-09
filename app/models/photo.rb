@@ -7,6 +7,7 @@
 # Name                    | Type               | Attributes
 # ----------------------- | ------------------ | ---------------------------
 # **`id`**                | `integer`          | `not null, primary key`
+# **`user_id`**           | `integer`          | `not null`
 # **`original_post_id`**  | `integer`          | `not null`
 # **`post_id`**           | `integer`          | `not null`
 # **`actor_id`**          | `integer`          |
@@ -19,11 +20,13 @@
 #
 # ### Indexes
 #
-# * `actor_id`:
-#     * **`actor_id`**
 # * `post_id`:
 #     * **`post_id`**
-# * `url`:
+# * `user_id_and_actor_id`:
+#     * **`user_id`**
+#     * **`actor_id`**
+# * `user_id_and_url`:
+#     * **`user_id`**
 #     * **`url`**
 # * `width`:
 #     * **`width`**

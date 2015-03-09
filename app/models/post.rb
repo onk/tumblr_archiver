@@ -7,6 +7,7 @@
 # Name               | Type               | Attributes
 # ------------------ | ------------------ | ---------------------------
 # **`id`**           | `integer`          | `not null, primary key`
+# **`user_id`**      | `integer`          | `not null`
 # **`original_id`**  | `integer`          | `not null`
 # **`url`**          | `string(255)`      | `not null`
 # **`posted_at`**    | `datetime`         | `not null`
@@ -16,11 +17,14 @@
 #
 # ### Indexes
 #
-# * `original_id` (_unique_):
+# * `user_id_and_original_id` (_unique_):
+#     * **`user_id`**
 #     * **`original_id`**
-# * `posted_at`:
+# * `user_id_and_posted_at`:
+#     * **`user_id`**
 #     * **`posted_at`**
-# * `url`:
+# * `user_id_and_url`:
+#     * **`user_id`**
 #     * **`url`**
 #
 
