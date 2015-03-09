@@ -14,6 +14,7 @@
 # **`width`**             | `integer`          | `not null`
 # **`height`**            | `integer`          | `not null`
 # **`url`**               | `string(255)`      | `not null`
+# **`image`**             | `string(255)`      |
 # **`average_hash`**      | `string(255)`      |
 # **`created_at`**        | `datetime`         | `not null`
 # **`updated_at`**        | `datetime`         | `not null`

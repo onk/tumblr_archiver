@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309010607) do
+ActiveRecord::Schema.define(version: 20150309090203) do
 
   create_table "actors", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20150309010607) do
     t.integer  "width",            limit: 4,   null: false
     t.integer  "height",           limit: 4,   null: false
     t.string   "url",              limit: 255, null: false
+    t.string   "image",            limit: 255
     t.string   "average_hash",     limit: 255
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
