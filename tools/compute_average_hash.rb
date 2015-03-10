@@ -1,21 +1,5 @@
-#!/usr/bin/env ruby
-$LOAD_PATH.push File.expand_path(__dir__)
-require "bundler/setup"
-Bundler.require
-
-def initialize_database
-  path = File.join(__dir__, "config/database.yml")
-  spec = YAML.load_file(path) || {}
-  ActiveRecord::Base.configurations = spec.stringify_keys
-  ActiveRecord::Base.establish_connection(:development)
-end
-
-def require_models
-  Dir.glob("models/**/*.rb").each do |f|
-    require f
-  end
-end
-
+# rails runner tools/compute_average_hash.rb
+require "rmagick"
 def calc_hash(photo)
   original = Magick::Image.read(photo.image.current_path)[0]
 
@@ -43,9 +27,6 @@ rescue Magick::ImageMagickError
 end
 
 def main
-  initialize_database
-  require_models
-
   i = 0
   Photo.find_each do |photo|
     p i if i % 100 == 0
