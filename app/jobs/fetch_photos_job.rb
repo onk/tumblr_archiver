@@ -62,8 +62,8 @@ class FetchPhotosJob < ActiveJob::Base
       unless File.exist?(filename)
         begin
           FileUtils.mkdir_p(File.dirname(photo.image.path))
-          File.binwrite(filename, Net::HTTP.get_response(URI.parse(photo.url)).body)
-        rescue => e
+          File.binwrite(photo.image.path, open(photo.url) { |f| f.read })
+        rescue OpenURI::HTTPError => e
           Rails.logger.error(e)
         end
         sleep 1
