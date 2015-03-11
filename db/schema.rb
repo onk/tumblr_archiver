@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309090203) do
+ActiveRecord::Schema.define(version: 20150311054240) do
 
   create_table "actors", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
@@ -20,17 +20,18 @@ ActiveRecord::Schema.define(version: 20150309090203) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.integer  "user_id",          limit: 4,   null: false
-    t.integer  "original_post_id", limit: 8,   null: false
-    t.integer  "post_id",          limit: 4,   null: false
+    t.integer  "user_id",          limit: 4,                   null: false
+    t.integer  "original_post_id", limit: 8,                   null: false
+    t.integer  "post_id",          limit: 4,                   null: false
     t.integer  "actor_id",         limit: 4
-    t.integer  "width",            limit: 4,   null: false
-    t.integer  "height",           limit: 4,   null: false
-    t.string   "url",              limit: 255, null: false
+    t.integer  "width",            limit: 4,                   null: false
+    t.integer  "height",           limit: 4,                   null: false
+    t.string   "url",              limit: 255,                 null: false
     t.string   "image",            limit: 255
     t.string   "average_hash",     limit: 255
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.boolean  "has_downloaded",   limit: 1,   default: false, null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   add_index "photos", ["post_id"], name: "post_id", using: :btree

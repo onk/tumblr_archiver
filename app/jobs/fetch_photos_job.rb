@@ -58,11 +58,12 @@ class FetchPhotosJob < ActiveJob::Base
 
   def download
     @photos.each do |photo|
-      filename = photo.image.path
-      unless File.exist?(filename)
+      unless photo.has_downloaded?
         begin
           FileUtils.mkdir_p(File.dirname(photo.image.path))
           File.binwrite(photo.image.path, open(photo.url) { |f| f.read })
+          photo.has_downloaded = true
+          photo.save!
         rescue OpenURI::HTTPError => e
           Rails.logger.error(e)
         end
