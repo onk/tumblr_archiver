@@ -11,8 +11,8 @@
 # **`original_post_id`**  | `integer`          | `not null`
 # **`post_id`**           | `integer`          | `not null`
 # **`actor_id`**          | `integer`          |
-# **`width`**             | `integer`          | `not null`
-# **`height`**            | `integer`          | `not null`
+# **`width`**             | `integer`          |
+# **`height`**            | `integer`          |
 # **`url`**               | `string(255)`      | `not null`
 # **`image`**             | `string(255)`      |
 # **`average_hash`**      | `string(255)`      |
@@ -30,8 +30,6 @@
 # * `user_id_and_url`:
 #     * **`user_id`**
 #     * **`url`**
-# * `width`:
-#     * **`width`**
 #
 
 class Photo < ActiveRecord::Base

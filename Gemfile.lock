@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.7)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -81,6 +82,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
+    fastimage (1.6.8)
+      addressable (~> 2.3, >= 2.3.5)
     global (0.1.2)
       activesupport (>= 2.0)
     globalid (0.3.3)
@@ -277,6 +280,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails
   factory_girl_rails
+  fastimage
   global
   jbuilder
   jquery-rails

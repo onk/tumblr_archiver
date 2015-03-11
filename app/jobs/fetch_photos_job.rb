@@ -1,3 +1,4 @@
+require "fastimage"
 require "rmagick"
 require "tumblr_client"
 
@@ -44,8 +45,6 @@ class FetchPhotosJob < ActiveJob::Base
 
           photo = post.photos.find_or_initialize_by(user_id: @user.id, url: original["url"]) do |p|
             p.original_post_id = post_json["id"]
-            p.width            = original["width"]
-            p.height           = original["height"]
           end
           photo[:image] = File.basename(original["url"])
           photo.save
@@ -77,6 +76,9 @@ class FetchPhotosJob < ActiveJob::Base
           File.binwrite(photo.image.path, open(photo.url) { |f| f.read })
           photo.has_downloaded = true
           photo.average_hash   = calc_hash(photo.image.path)
+          width, height = FastImage.size(photo.image.path)
+          photo.width   = width
+          photo.height  = height
           photo.save!
         rescue OpenURI::HTTPError => e
           Rails.logger.error(e)
