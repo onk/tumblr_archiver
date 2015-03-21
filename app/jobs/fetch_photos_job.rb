@@ -1,5 +1,4 @@
 require "fastimage"
-require "rmagick"
 require "tumblr_client"
 
 class FetchPhotosJob < ActiveJob::Base
@@ -56,18 +55,6 @@ class FetchPhotosJob < ActiveJob::Base
     end
   end
 
-  def calc_hash(filename)
-    original = Magick::Image.read(filename)[0]
-    # 16x16 にリサイズして二値化 (16bitなので半分の 2**15 を閾値に)
-    img = original.resize(16, 16).threshold(32768)
-    # 各ピクセルごとにビットを立てる。白黒なので red の値だけ見ればいい
-    bits = img.get_pixels(0, 0, img.columns, img.rows).map { |p| p.red == 0 ? 1 : 0 }
-    # bit -> 16進文字列 にして DB に詰める
-    bits.join.to_i(2).to_s(16)
-  rescue Magick::ImageMagickError
-    Rails.logger.error(e)
-  end
-
   def download
     @photos.each do |photo|
       unless photo.has_downloaded?
@@ -75,7 +62,7 @@ class FetchPhotosJob < ActiveJob::Base
           FileUtils.mkdir_p(File.dirname(photo.image.path))
           File.binwrite(photo.image.path, open(photo.url) { |f| f.read })
           photo.has_downloaded = true
-          photo.average_hash   = calc_hash(photo.image.path)
+          photo.average_hash   = AverageHash.calc_hash(Magick::Image.read(photo.image.path)[0])
           width, height = FastImage.size(photo.image.path)
           photo.width   = width
           photo.height  = height

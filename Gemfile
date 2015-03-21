@@ -12,7 +12,7 @@ gem "kaminari"
 gem "mysql2"
 gem "omniauth"
 gem "omniauth-tumblr"
-gem "rmagick", require: false
+gem "rmagick"
 gem "sass-rails"
 gem "sidekiq"
 gem "sinatra", require: false
