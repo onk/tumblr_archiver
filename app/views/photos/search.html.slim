@@ -1,0 +1,8 @@
+= form_tag(search_photos_path)
+  p
+    = text_field_tag(:url)
+    = submit_tag("検索")
+
+- if @average_hash
+  = image_tag(params[:url], height: 200)
+  = render "suggest", photos: Photo.suggest(@average_hash)

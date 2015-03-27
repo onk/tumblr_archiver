@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :photos, only: [:show]
+  resources :photos, only: [:show] do
+    collection do
+      match :search, via: [:get, :post]
+    end
+  end
 
   root "photos#index"
 

@@ -22,13 +22,4 @@ table
           td
             = link_to(@photo.post.url, @photo.post.url)
 
-table
-  - @photo.suggest.each_slice(4) do |photo_array|
-    tr
-      - photo_array.each do |photo, rate|
-        td
-          = link_to(photo)
-            = image_tag(photo.image.url, width: 50)
-        td
-          = rate.round(5)
-
+= render "suggest", photos: @photo.suggest
