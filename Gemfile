@@ -28,6 +28,7 @@ group :development do
   gem "pry-doc"
   gem "pry-rails", group: :test
   gem "pry-stack_explorer"
+  gem "quiet_assets"
   gem "rubocop"
   gem "spring"
   gem "web-console"
