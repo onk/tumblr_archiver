@@ -27,7 +27,8 @@ table
     tr
       - photo_array.each do |photo, rate|
         td
-          = image_tag(photo.image.url, width: 50)
+          = link_to(photo)
+            = image_tag(photo.image.url, width: 50)
         td
           = rate.round(5)
 
