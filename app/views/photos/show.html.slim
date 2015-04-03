@@ -10,7 +10,14 @@ table
           td = @photo.id
         tr
           th actor
-          td = @photo.actor.try(:name)
+          td
+            - if @photo.actor.new_record?
+              = form_for(@photo) do |f|
+                = f.fields_for(@photo.actor) do |actor_form|
+                  = actor_form.text_field :name
+                = f.submit
+            - else
+              = @photo.actor.name
         tr
           th size
           td = "#{@photo.width}x#{@photo.height}"

@@ -42,6 +42,14 @@ class Photo < ActiveRecord::Base
     Photo.suggest(self.average_hash, self)
   end
 
+  def save_with_actor(params)
+    ActiveRecord::Base.transaction do
+      actor = Actor.find_or_create_by(name: params[:actor][:name])
+      self.actor = actor
+      self.save!
+    end
+  end
+
   def self.suggest(average_hash, exclude_photos = [])
     (Photo.all.to_a - Array(exclude_photos)).map { |photo|
       if average_hash && photo.average_hash

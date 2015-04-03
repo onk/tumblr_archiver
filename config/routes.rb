@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :photos, only: [:show] do
+  resources :photos, only: [:show, :update] do
     collection do
       match :search, via: [:get, :post]
     end
