@@ -27,7 +27,7 @@ class FetchPhotosJob < ActiveJob::Base
     per_page = 20
     offset = 0
     total_posts = 20 # 初期値
-    while(offset < total_posts) do
+    while offset < total_posts
       json = @client.posts("#{@user.name}.tumblr.com", type: :photo, offset: offset)
       total_posts = json["total_posts"]
       json["posts"].each do |post_json|
@@ -40,7 +40,7 @@ class FetchPhotosJob < ActiveJob::Base
         end
 
         post_json["photos"].each do |photo|
-          original = photo["original_size"] || photo["alt_sizes"].max_by{|j| j["width"]}
+          original = photo["original_size"] || photo["alt_sizes"].max_by { |j| j["width"] }
 
           photo = post.photos.find_or_initialize_by(user_id: @user.id, url: original["url"]) do |p|
             p.original_post_id = post_json["id"]

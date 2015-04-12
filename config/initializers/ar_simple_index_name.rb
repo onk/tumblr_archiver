@@ -5,7 +5,7 @@ ActiveSupport.on_load :active_record do
     module SchemaStatements
       def index_name_with_simple(table_name, options)
         if Hash === options && options[:column]
-          Array.wrap(options[:column]) * '_and_'
+          Array.wrap(options[:column]) * "_and_"
         else
           index_name_without_simple(table_name, options)
         end
