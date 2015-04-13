@@ -4,6 +4,8 @@ gem "rails", "4.2.1"
 
 gem "carrierwave"
 gem "coffee-rails"
+gem "dotenv"
+gem "dotenv-rails"
 gem "fastimage", require: false
 gem "global"
 gem "jbuilder"

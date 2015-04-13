@@ -14,3 +14,6 @@
 
 # carrierwave
 /public/uploads
+
+# dotenv
+/.env
