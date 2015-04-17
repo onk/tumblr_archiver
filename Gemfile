@@ -20,6 +20,7 @@ gem "slim-rails"
 gem "tumblr_client", require: false
 gem "turbolinks"
 gem "uglifier"
+gem "unicorn"
 
 group :development do
   gem "annotate"
