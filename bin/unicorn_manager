@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+lib = File.expand_path("../lib", __dir__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+require "optparse"
+require "unicorn_manager"
+
+options = {
+  "-c" => File.join('config', 'unicorn.rb'),
+  "-E" => "development",
+}
+
+ARGV.clone.options do |opts|
+  opts.on("-d", "--daemon", "Make server run as a Daemon") { options["-D"] = nil }
+  opts.on("-e", "--env=environment", "Rails environment(default: development)") {|v| options["-E"] = v }
+  opts.on("-c", "--config=file", "use custom unicorn configuration file(default: config/unicorn.rb)") {|v| options["-c"] = v }
+  opts.on("-u", "--debugger", "Enable Debugger") {|v| options["-d"] = nil }
+  opts.on("-p", "--port=number", "Port number") {|v| options["-p"] = v}
+
+  opts.on("-h", "--help", "Show this help message.") { puts opts; exit }
+  opts.parse!
+end
+
+available_commands = %(start reload stop kill rotatelog hup incr decr usr1 usr2 quit int ttin ttou)
+command = ARGV.first
+command = "start" unless available_commands.include?(command)
+
+if options["-E"] != "development"
+  options.delete("-p")
+end
+UnicornManager.command(command, options)
