@@ -17,6 +17,11 @@ class PhotosController < ApplicationController
     @average_hash = AverageHash.calc_hash(image)
   end
 
+  def recent
+    @photos = Photo.order(id: :desc).take(50)
+    render :index
+  end
+
   def update
     @photo.save_with_actor(params[:photo])
     redirect_to photo_path(@photo)
