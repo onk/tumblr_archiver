@@ -34,13 +34,11 @@ module UnicornManager
     def read_config_file(options)
       filename = options["-c"]
       lines = File.readlines(filename)
-      line = lines.detect {|li| li =~ /\Apid/ }
-      @pid_file = line.split(" ")[1].tr('"', '')
+      line = lines.detect { |li| li =~ /\Apid/ }
+      @pid_file = line.split(" ")[1].tr('"', "")
     end
 
-    def pid_file
-      @pid_file
-    end
+    attr_reader :pid_file
 
     def old_pid_file
       pid_file + ".oldbin"
@@ -69,12 +67,12 @@ module UnicornManager
 
     def quit_old_pid
       retry_cnt = 0
-      while File.exists?(old_pid_file) && retry_cnt < 5
+      while File.exist?(old_pid_file) && retry_cnt < 5
         send_signal("QUIT", old_pid)
         retry_cnt += 1
         sleep 2
       end
-      if File.exists?(old_pid_file)
+      if File.exist?(old_pid_file)
         puts "old_pid still exists after 5 retry"
         exit 1
       end
@@ -82,7 +80,7 @@ module UnicornManager
 
     def wait_until_suicide
       retry_cnt = 0
-      while File.exists?(old_pid_file) && retry_cnt < 30
+      while File.exist?(old_pid_file) && retry_cnt < 30
         retry_cnt += 1
         sleep 2
       end

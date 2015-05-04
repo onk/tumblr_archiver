@@ -6,16 +6,16 @@ require "optparse"
 require "unicorn_manager"
 
 options = {
-  "-c" => File.join('config', 'unicorn.rb'),
+  "-c" => File.join("config", "unicorn.rb"),
   "-E" => "development",
 }
 
 ARGV.clone.options do |opts|
   opts.on("-d", "--daemon", "Make server run as a Daemon") { options["-D"] = nil }
-  opts.on("-e", "--env=environment", "Rails environment(default: development)") {|v| options["-E"] = v }
-  opts.on("-c", "--config=file", "use custom unicorn configuration file(default: config/unicorn.rb)") {|v| options["-c"] = v }
-  opts.on("-u", "--debugger", "Enable Debugger") {|v| options["-d"] = nil }
-  opts.on("-p", "--port=number", "Port number") {|v| options["-p"] = v}
+  opts.on("-e", "--env=environment", "Rails environment(default: development)") { |v| options["-E"] = v }
+  opts.on("-c", "--config=file", "use custom unicorn configuration file(default: config/unicorn.rb)") { |v| options["-c"] = v }
+  opts.on("-u", "--debugger", "Enable Debugger") { |_v| options["-d"] = nil }
+  opts.on("-p", "--port=number", "Port number") { |v| options["-p"] = v }
 
   opts.on("-h", "--help", "Show this help message.") { puts opts; exit }
   opts.parse!
