@@ -57,21 +57,20 @@ class FetchPhotosJob < ActiveJob::Base
 
   def download
     @photos.each do |photo|
-      unless photo.has_downloaded?
-        begin
-          FileUtils.mkdir_p(File.dirname(photo.image.path))
-          File.binwrite(photo.image.path, open(photo.url) { |f| f.read })
-          photo.has_downloaded = true
-          photo.average_hash   = AverageHash.calc_hash(Magick::Image.read(photo.image.path)[0])
-          width, height = FastImage.size(photo.image.path)
-          photo.width   = width
-          photo.height  = height
-          photo.save!
-        rescue OpenURI::HTTPError => e
-          Rails.logger.error(e)
-        end
-        sleep 1
+      next if photo.has_downloaded?
+      begin
+        FileUtils.mkdir_p(File.dirname(photo.image.path))
+        File.binwrite(photo.image.path, open(photo.url) { |f| f.read })
+        photo.has_downloaded = true
+        photo.average_hash   = AverageHash.calc_hash(Magick::Image.read(photo.image.path)[0])
+        width, height = FastImage.size(photo.image.path)
+        photo.width   = width
+        photo.height  = height
+        photo.save!
+      rescue OpenURI::HTTPError => e
+        Rails.logger.error(e)
       end
+      sleep 1
     end
   end
 end
