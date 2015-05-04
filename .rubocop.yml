@@ -1,5 +1,5 @@
 # target_version:
-#   rubocop v0.30.0
+#   rubocop v0.30.1
 
 # 自動生成されるものはチェック対象から除外する
 AllCops:
@@ -70,6 +70,10 @@ Style/IfUnlessModifier:
 # そもそも {} が必要ない可能性が高いが Style/BracesAroundHashParameters はチェックしないことにしたので
 Style/IndentHash:
   EnforcedStyle: consistent
+
+# private/protected は一段深くインデントする
+Style/IndentationConsistency:
+  EnforcedStyle: rails
 
 # scope 等は複数行でも lambda ではなく ->{} で揃えた方が見た目が綺麗
 Style/Lambda:
