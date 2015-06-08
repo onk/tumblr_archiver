@@ -11,7 +11,7 @@
 # **`original_id`**  | `integer`          | `not null`
 # **`url`**          | `string(255)`      | `not null`
 # **`posted_at`**    | `datetime`         | `not null`
-# **`photo_count`**  | `integer`          | `default("1"), not null`
+# **`photo_count`**  | `integer`          | `default(1), not null`
 # **`created_at`**   | `datetime`         | `not null`
 # **`updated_at`**   | `datetime`         | `not null`
 #
