@@ -69,6 +69,11 @@ class FetchPhotosJob < ActiveJob::Base
         photo.save!
       rescue OpenURI::HTTPError => e
         Rails.logger.error(e)
+      rescue Timeout::Error => e
+        Rails.logger.error(e)
+      rescue => e
+        # その他のエラーも処理は継続
+        Rails.logger.error(e)
       end
       sleep 1
     end
