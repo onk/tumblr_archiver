@@ -17,7 +17,7 @@ table
                   = actor_form.text_field :name
                 = f.submit
             - else
-              = @photo.actor.name
+              = link_to(@photo.actor.name, actor_path(name: @photo.actor.name))
         tr
           th size
           td = "#{@photo.width}x#{@photo.height}"

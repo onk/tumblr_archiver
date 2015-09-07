@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get :recent
     end
   end
+  resources :actors, only: [:show], param: :name
 
   root "photos#index"
 
