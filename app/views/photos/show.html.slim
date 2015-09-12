@@ -18,6 +18,9 @@ table
                 = f.submit
             - else
               = link_to(@photo.actor.name, actor_path(name: @photo.actor.name))
+              = form_for(@photo) do |f|
+                = f.hidden_field :actor_id, value: nil
+                = f.submit "削除"
         tr
           th size
           td = "#{@photo.width}x#{@photo.height}"
