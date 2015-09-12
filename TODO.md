@@ -5,3 +5,4 @@
 *   一致画像を tumblr 上から delete したい
 *   heroku app 化して誰でも使えるように
 *   http://tumb.la/
+*   Cooliris っぽい UI で表示するのヨサソウ
