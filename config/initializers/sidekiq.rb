@@ -1,4 +1,5 @@
 require "sidekiq/web"
+require "sidetiq/web"
 
 module RedisConnectionSetting
   def self.to_url(config)

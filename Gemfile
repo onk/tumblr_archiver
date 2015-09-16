@@ -15,6 +15,7 @@ gem "omniauth-tumblr"
 gem "rmagick"
 gem "sass-rails"
 gem "sidekiq"
+gem "sidetiq"
 gem "sinatra", require: false
 gem "slim-rails"
 gem "tumblr_client", require: false

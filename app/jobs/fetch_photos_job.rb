@@ -1,14 +1,21 @@
 require "fastimage"
 require "tumblr_client"
 
-class FetchPhotosJob < ActiveJob::Base
-  queue_as :default
+class FetchPhotosJob
+  include Sidekiq::Worker
+  include Sidetiq::Schedulable
 
-  def perform(user)
-    @user = user
-    auth
-    fetch_urls
-    download
+  recurrence {
+    daily.hour_of_day(4) # 0 4 * * *
+  }
+
+  def perform(last_occurrence, current_occurrence)
+    User.all.each do |user|
+      @user = user
+      auth
+      fetch_urls
+      download
+    end
   end
 
   def auth
