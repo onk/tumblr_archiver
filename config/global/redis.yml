@@ -14,5 +14,7 @@ development:
 
 test:
 
+staging:
+
 production:
 
