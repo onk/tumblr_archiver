@@ -3,13 +3,8 @@ require "tumblr_client"
 
 class FetchPhotosJob
   include Sidekiq::Worker
-  include Sidetiq::Schedulable
 
-  recurrence {
-    daily.hour_of_day(4) # 0 4 * * *
-  }
-
-  def perform(last_occurrence, current_occurrence)
+  def perform
     User.all.each do |user|
       @user = user
       auth

@@ -1,0 +1,4 @@
+fetch_photos_job:
+  cron: "0 4 * * *"
+  class: "FetchPhotosJob"
+  queue: "default"

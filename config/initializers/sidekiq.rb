@@ -1,5 +1,5 @@
 require "sidekiq/web"
-require "sidetiq/web"
+require "sidekiq/cron/web"
 
 module RedisConnectionSetting
   def self.to_url(config)
@@ -13,6 +13,9 @@ Sidekiq.configure_server do |config|
     url: RedisConnectionSetting.to_url(Global.redis.queue.to_hash),
     namespace: Global.redis.queue.namespace,
   }
+
+  schedule_file = Rails.root.join("config/schedule.yml")
+  Sidekiq::Cron::Job.load_from_hash!(YAML.load_file(schedule_file))
 end
 
 # When in Unicorn, this block needs to go in unicorn's `after_fork` callback:
