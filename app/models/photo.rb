@@ -57,8 +57,8 @@ class Photo < ActiveRecord::Base
   def self.suggest(average_hash, exclude_photos = [])
     (Photo.all.to_a - Array(exclude_photos)).map { |photo|
       if average_hash && photo.average_hash
-        sum = (photo.average_hash.to_i(16) | average_hash.to_i(16)).to_s(2).chars.count("1")
-        mul = (photo.average_hash.to_i(16) & average_hash.to_i(16)).to_s(2).chars.count("1")
+        sum = (photo.average_hash.to_i(16) | average_hash.to_i(16)).to_s(2).count("1")
+        mul = (photo.average_hash.to_i(16) & average_hash.to_i(16)).to_s(2).count("1")
         [photo, mul.to_f / sum]
       else
         [photo, 0]
