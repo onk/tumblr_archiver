@@ -39,7 +39,7 @@ class Photo < ActiveRecord::Base
   belongs_to :actor
 
   def suggest
-    Photo.suggest(self.average_hash, self)
+    Photo.suggest(self.average_hash, self.id)
   end
 
   def save_with_actor(params)
@@ -54,15 +54,18 @@ class Photo < ActiveRecord::Base
     end
   end
 
-  def self.suggest(average_hash, exclude_photos = [])
-    (Photo.all.to_a - Array(exclude_photos)).map { |photo|
-      if average_hash && photo.average_hash
-        sum = (photo.average_hash.to_i(16) | average_hash.to_i(16)).to_s(2).count("1")
-        mul = (photo.average_hash.to_i(16) & average_hash.to_i(16)).to_s(2).count("1")
-        [photo, mul.to_f / sum]
+  def self.suggest(average_hash, exclude_photo_ids = [])
+    suggests = Photo.pluck(:id, :average_hash).select { |(id, _)| Array(exclude_photo_ids).exclude?(id) }.map { |(id, hash)|
+      if average_hash && hash
+        sum = (hash.to_i(16) | average_hash.to_i(16)).to_s(2).count("1")
+        mul = (hash.to_i(16) & average_hash.to_i(16)).to_s(2).count("1")
+        [id, mul.to_f / sum]
       else
-        [photo, 0]
+        [id, 0]
       end
     }.sort_by { |a| -a[1] }.take(16)
+    photo_ids = suggests.map { |(id, _)| id }
+    photo_idx = Photo.find(photo_ids).index_by(&:id)
+    suggests.map { |(id, rate)| [photo_idx[id], rate] }
   end
 end
