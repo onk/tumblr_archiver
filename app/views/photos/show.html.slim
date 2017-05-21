@@ -32,4 +32,17 @@ table
           td
             = link_to(@photo.post.url, @photo.post.url)
 
+h2 histogram
+
+table[cellpadding=0 cellspacing=0]
+  tr
+    - color_table = [0, 51, 102, 153, 204, 255]
+    - @photo.deserialized_color_hash.each_with_index do |v, i|
+      - r = i / 36
+      - g = (i - (r * 36)) / 6
+      - b = i % 6
+      td[style="vertical-align: bottom; width:1px; height: 255px; margin: 0; padding: 0"]
+        div[style="height: #{v}px; background-color: rgb(#{color_table[r]},#{color_table[g]},#{color_table[b]});"]
+        | &nbsp;
+
 = render "suggest", photos: @photo.suggest

@@ -96,4 +96,8 @@ class Photo < ActiveRecord::Base
   def self.deserialized_color_hash(hash)
     MessagePack.unpack(Zlib::Inflate.inflate(Base64.decode64(hash)))
   end
+
+  def deserialized_color_hash
+    self.class.deserialized_color_hash(color_hash)
+  end
 end
