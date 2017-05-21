@@ -43,6 +43,10 @@ class Photo < ActiveRecord::Base
     Photo.suggest(self.average_hash, self.id)
   end
 
+  def suggest_by_color
+    Photo.suggest_by_color(self.color_hash, self)
+  end
+
   def save_with_actor(params)
     ActiveRecord::Base.transaction do
       if params[:actor]
@@ -68,5 +72,28 @@ class Photo < ActiveRecord::Base
     photo_ids = suggests.map { |(id, _)| id }
     photo_idx = Photo.find(photo_ids).index_by(&:id)
     suggests.map { |(id, rate)| [photo_idx[id], rate] }
+  end
+
+  def self.suggest_by_color(color_hash, exclude_photo_ids = [])
+    suggests = Photo.pluck(:id, :color_hash).select { |(id, _)| Array(exclude_photo_ids).exclude?(id) }.map { |(id, hash)|
+      if color_hash && hash
+        self_hash   = deserialized_color_hash(color_hash)
+        target_hash = deserialized_color_hash(hash)
+        # 類似度を計算する
+        sum = self_hash.sum
+        min = 216.times.map { |i| [self_hash[i], target_hash[i]].min }.sum
+        [id, min.to_f / sum]
+      else
+        [id, 0]
+      end
+    }.sort_by { |a| -a[1] }.take(16)
+    photo_ids = suggests.map { |(id, _)| id }
+    photo_idx = Photo.find(photo_ids).index_by(&:id)
+    suggests.map { |(id, rate)| [photo_idx[id], rate] }
+  end
+
+  # msgpack を zlib したものを base 64 して保存してあるので逆算する
+  def self.deserialized_color_hash(hash)
+    MessagePack.unpack(Zlib::Inflate.inflate(Base64.decode64(hash)))
   end
 end
