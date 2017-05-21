@@ -45,4 +45,8 @@ table[cellpadding=0 cellspacing=0]
         div[style="height: #{v}px; background-color: rgb(#{color_table[r]},#{color_table[g]},#{color_table[b]});"]
         | &nbsp;
 
+h2 suggest by color_hash
+= render "suggest", photos: @photo.suggest_by_color
+
+h2 suggest by average_hash
 = render "suggest", photos: @photo.suggest
