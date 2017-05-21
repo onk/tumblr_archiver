@@ -64,7 +64,9 @@ class FetchPhotosJob
         FileUtils.mkdir_p(File.dirname(photo.image.path))
         File.binwrite(photo.image.path, open(photo.url) { |f| f.read })
         photo.has_downloaded = true
-        photo.average_hash   = AverageHash.calc_hash(Magick::Image.read(photo.image.path)[0])
+        magick_image = Magick::Image.read(photo.image.path)[0]
+        photo.average_hash   = AverageHash.calc_hash(magick_image)
+        photo.color_hash     = ColorHash.calc_hash(magick_image)
         width, height = FastImage.size(photo.image.path)
         photo.width   = width
         photo.height  = height
