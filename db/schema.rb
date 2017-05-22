@@ -20,19 +20,19 @@ ActiveRecord::Schema.define(version: 20151103052735) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.integer  "user_id",          limit: 4,                   null: false
-    t.integer  "original_post_id", limit: 8,                   null: false
-    t.integer  "post_id",          limit: 4,                   null: false
+    t.integer  "user_id",          limit: 4,                    null: false
+    t.integer  "original_post_id", limit: 8,                    null: false
+    t.integer  "post_id",          limit: 4,                    null: false
     t.integer  "actor_id",         limit: 4
     t.integer  "width",            limit: 4
     t.integer  "height",           limit: 4
-    t.string   "url",              limit: 255,                 null: false
+    t.string   "url",              limit: 255,                  null: false
     t.string   "image",            limit: 255
     t.string   "average_hash",     limit: 255
-    t.string   "color_hash",       limit: 255
-    t.boolean  "has_downloaded",   limit: 1,   default: false, null: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.string   "color_hash",       limit: 1023
+    t.boolean  "has_downloaded",   limit: 1,    default: false, null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
   end
 
   add_index "photos", ["post_id"], name: "post_id", using: :btree

@@ -4,11 +4,11 @@ require "zlib"
 
 module ColorHash
   def self.calc_hash(image)
-    # 16x16 にリサイズ
-    img = image.resize(16, 16)
+    # 128x128 にリサイズ
+    img = image.resize(256, 256)
     # rgb 6*6*6 の各色について、何ピクセル存在するかを集計する
     histogram = Array.new(216) { 0 }
-    img.get_pixels(0, 0, 16, 16).each { |p|
+    img.get_pixels(0, 0, img.columns, img.rows).each { |p|
       label = rgb2label(*rgb2safe_color(p.red, p.green, p.blue))
       histogram[label] += 1
     }
