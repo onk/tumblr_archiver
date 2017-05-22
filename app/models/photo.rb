@@ -44,7 +44,7 @@ class Photo < ActiveRecord::Base
   end
 
   def suggest_by_color
-    Photo.suggest_by_color(self.color_hash, self)
+    Photo.suggest_by_color(self.color_hash, self.id)
   end
 
   def save_with_actor(params)
