@@ -45,7 +45,7 @@ class Photo < ActiveRecord::Base
   def save_with_actor(params)
     ActiveRecord::Base.transaction do
       if params[:actor]
-        actor = Actor.find_or_create_by(name: params[:actor][:name])
+        actor = Actor.find_or_create_by!(name: params[:actor][:name])
         self.actor = actor
       else
         self.actor_id = nil

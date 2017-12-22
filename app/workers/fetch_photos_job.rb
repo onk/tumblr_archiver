@@ -35,7 +35,7 @@ class FetchPhotosJob
       json["posts"].each do |post_json|
         next unless post_json["photos"]
 
-        post = Post.find_or_create_by(user_id: @user.id, original_id: post_json["id"]) do |p|
+        post = Post.find_or_create_by!(user_id: @user.id, original_id: post_json["id"]) do |p|
           p.url         = post_json["post_url"]
           p.posted_at   = Time.at(post_json["timestamp"])
           p.photo_count = post_json["photos"].count
@@ -48,7 +48,7 @@ class FetchPhotosJob
             p.original_post_id = post_json["id"]
           end
           photo[:image] = File.basename(original["url"])
-          photo.save
+          photo.save!
           @photos << photo
         end
       end

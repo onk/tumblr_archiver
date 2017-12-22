@@ -29,6 +29,7 @@ gem "unicorn"
 group :development do
   gem "annotate"
   gem "byebug"
+  gem "onkcop"
   gem "pry-byebug"
   gem "pry-doc"
   gem "pry-rails", group: :test
@@ -40,8 +41,8 @@ group :development do
 end
 
 group :test do
-  gem "rspec-rails", group: :development
   gem "factory_girl_rails", group: :development
+  gem "rspec-rails", group: :development
 end
 
 group :doc do

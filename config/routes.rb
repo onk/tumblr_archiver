@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root "photos#index"
 
   get   "/auth/:provider/callback", to: "sessions#create"
-  match "/logout",                  to: "sessions#destroy", as: :logout,  via: [:get, :post]
+  match "/logout",                  to: "sessions#destroy", as: :logout, via: [:get, :post]
 
   mount Sidekiq::Web => "/sidekiq"
 end

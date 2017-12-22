@@ -136,6 +136,9 @@ GEM
     omniauth-tumblr (1.2)
       multi_json
       omniauth-oauth (~> 1.0)
+    onkcop (0.52.0.0)
+      rubocop (~> 0.52.0)
+      rubocop-rspec (>= 1.21.0)
     parallel (1.12.1)
     parser (2.4.0.2)
       ast (~> 2.3)
@@ -220,6 +223,8 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
+    rubocop-rspec (1.21.0)
+      rubocop (>= 0.52.0)
     ruby-progressbar (1.9.0)
     rufus-scheduler (3.4.2)
       et-orbi (~> 1.0)
@@ -313,6 +318,7 @@ DEPENDENCIES
   mysql2 (= 0.3.21)
   omniauth
   omniauth-tumblr
+  onkcop
   pry-byebug
   pry-doc
   pry-rails

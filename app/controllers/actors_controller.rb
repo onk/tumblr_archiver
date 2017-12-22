@@ -5,4 +5,3 @@ class ActorsController < ApplicationController
     render "photos/index"
   end
 end
-

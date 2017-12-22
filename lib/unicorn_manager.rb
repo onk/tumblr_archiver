@@ -7,7 +7,7 @@ module UnicornManager
 
       case command
       when "start"
-        exec("unicorn_rails #{options.to_a.join(' ')}")
+        exec("unicorn_rails #{options.to_a.join(" ")}")
       when "usr2", "reload"
         quit_old_pid
         send_signal_to_master("USR2")
