@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "4.2.1"
+gem "rails", "4.2.10"
 
 gem "carrierwave"
 gem "coffee-rails"
@@ -11,7 +11,7 @@ gem "global"
 gem "jbuilder"
 gem "jquery-rails"
 gem "kaminari"
-gem "mysql2", "0.3.21"
+gem "mysql2"
 gem "omniauth"
 gem "omniauth-tumblr"
 gem "redis-namespace"

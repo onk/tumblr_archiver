@@ -1,5 +1,12 @@
 ---
 ja:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "バリデーションに失敗しました: %{errors}"
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
   date:
     abbr_day_names:
     - 日
@@ -10,7 +17,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -36,7 +43,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -86,6 +93,9 @@ ja:
       x_months:
         one: 1ヶ月
         other: "%{count}ヶ月"
+      x_years:
+        one: 1年
+        other: "%{count}年"
       x_seconds:
         one: 1秒
         other: "%{count}秒"
@@ -99,38 +109,38 @@ ja:
   errors:
     format: "%{attribute}%{message}"
     messages:
-      accepted: を受諾してください。
-      blank: を入力してください。
-      present: は入力しないでください。
-      confirmation: と%{attribute}の入力が一致しません。
-      empty: を入力してください。
-      equal_to: は%{count}にしてください。
-      even: は偶数にしてください。
-      exclusion: は予約されています。
-      greater_than: は%{count}より大きい値にしてください。
-      greater_than_or_equal_to: は%{count}以上の値にしてください。
-      inclusion: は一覧にありません。
-      invalid: は不正な値です。
-      less_than: は%{count}より小さい値にしてください。
-      less_than_or_equal_to: は%{count}以下の値にしてください。
-      not_a_number: は数値で入力してください。
-      not_an_integer: は整数で入力してください。
-      odd: は奇数にしてください。
-      record_invalid: バリデーションに失敗しました。 %{errors}
-      restrict_dependent_destroy: "%{record}が存在しているので削除できません。"
-      taken: はすでに存在します。
-      too_long: は%{count}文字以内で入力してください。
-      too_short: は%{count}文字以上で入力してください。
-      wrong_length: は%{count}文字で入力してください。
-      other_than: は%{count}以外の値にしてください。
+      accepted: を受諾してください
+      blank: を入力してください
+      present: は入力しないでください
+      confirmation: と%{attribute}の入力が一致しません
+      empty: を入力してください
+      equal_to: は%{count}にしてください
+      even: は偶数にしてください
+      exclusion: は予約されています
+      greater_than: は%{count}より大きい値にしてください
+      greater_than_or_equal_to: は%{count}以上の値にしてください
+      inclusion: は一覧にありません
+      invalid: は不正な値です
+      less_than: は%{count}より小さい値にしてください
+      less_than_or_equal_to: は%{count}以下の値にしてください
+      model_invalid: "バリデーションに失敗しました: %{errors}"
+      not_a_number: は数値で入力してください
+      not_an_integer: は整数で入力してください
+      odd: は奇数にしてください
+      required: を入力してください
+      taken: はすでに存在します
+      too_long: は%{count}文字以内で入力してください
+      too_short: は%{count}文字以上で入力してください
+      wrong_length: は%{count}文字で入力してください
+      other_than: は%{count}以外の値にしてください
     template:
-      body: 次の項目を確認してください。
+      body: 次の項目を確認してください
       header:
-        one: "%{model}にエラーが発生しました。"
-        other: "%{model}に%{count}個のエラーが発生しました。"
+        one: "%{model}にエラーが発生しました"
+        other: "%{model}に%{count}個のエラーが発生しました"
   helpers:
     select:
-      prompt: 選択してください。
+      prompt: 選択してください
     submit:
       create: 登録する
       submit: 保存する
@@ -170,10 +180,10 @@ ja:
         format: "%n%u"
         units:
           byte: バイト
-          gb: ギガバイト
-          kb: キロバイト
-          mb: メガバイト
-          tb: テラバイト
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
     percentage:
       format:
         delimiter: ''
@@ -183,9 +193,9 @@ ja:
         delimiter: ''
   support:
     array:
-      last_word_connector: と
-      two_words_connector: と
-      words_connector: と
+      last_word_connector: 、
+      two_words_connector: 、
+      words_connector: 、
   time:
     am: 午前
     formats:
