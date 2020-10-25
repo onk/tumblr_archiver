@@ -23,5 +23,4 @@ gem "sprockets", "< 4" # 4.0 対応まだできてない
 gem "tumblr_client", require: false
 gem "turbolinks"
 gem "uglifier"
-gem "unicorn"
 
