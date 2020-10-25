@@ -5,8 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem "rails", "5.0.7.2"
+gem "rails", "5.1.7"
 
+gem "activerecord-simple_index_name"
 gem "carrierwave"
 gem "coffee-rails"
 gem "fastimage", require: false

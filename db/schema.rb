@@ -12,52 +12,52 @@
 
 ActiveRecord::Schema.define(version: 20150311151313) do
 
-  create_table "actors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",       null: false
+  create_table "actors", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id",                          null: false
-    t.bigint   "original_post_id",                 null: false
-    t.integer  "post_id",                          null: false
-    t.integer  "actor_id"
-    t.integer  "width"
-    t.integer  "height"
-    t.string   "url",                              null: false
-    t.string   "image"
-    t.string   "average_hash"
-    t.boolean  "has_downloaded",   default: false, null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.index ["post_id"], name: "index_photos_on_post_id", using: :btree
-    t.index ["user_id", "actor_id"], name: "index_photos_on_user_id_and_actor_id", using: :btree
-    t.index ["user_id", "url"], name: "index_photos_on_user_id_and_url", using: :btree
+  create_table "photos", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id", null: false
+    t.bigint "original_post_id", null: false
+    t.integer "post_id", null: false
+    t.integer "actor_id"
+    t.integer "width"
+    t.integer "height"
+    t.string "url", null: false
+    t.string "image"
+    t.string "average_hash"
+    t.boolean "has_downloaded", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "post_id"
+    t.index ["user_id", "actor_id"], name: "user_id_and_actor_id"
+    t.index ["user_id", "url"], name: "user_id_and_url"
   end
 
-  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id",                 null: false
-    t.bigint   "original_id",             null: false
-    t.string   "url",                     null: false
-    t.datetime "posted_at",               null: false
-    t.integer  "photo_count", default: 1, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.index ["user_id", "original_id"], name: "index_posts_on_user_id_and_original_id", unique: true, using: :btree
-    t.index ["user_id", "posted_at"], name: "index_posts_on_user_id_and_posted_at", using: :btree
-    t.index ["user_id", "url"], name: "index_posts_on_user_id_and_url", using: :btree
+  create_table "posts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id", null: false
+    t.bigint "original_id", null: false
+    t.string "url", null: false
+    t.datetime "posted_at", null: false
+    t.integer "photo_count", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "original_id"], name: "user_id_and_original_id", unique: true
+    t.index ["user_id", "posted_at"], name: "user_id_and_posted_at"
+    t.index ["user_id", "url"], name: "user_id_and_url"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",               null: false
-    t.string   "provider",           null: false
-    t.string   "provider_user_id",   null: false
-    t.string   "oauth_token",        null: false
-    t.string   "oauth_token_secret", null: false
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["provider", "provider_user_id"], name: "index_users_on_provider_and_provider_user_id", unique: true, using: :btree
+  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.string "provider", null: false
+    t.string "provider_user_id", null: false
+    t.string "oauth_token", null: false
+    t.string "oauth_token_secret", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "provider_user_id"], name: "provider_and_provider_user_id", unique: true
   end
 
 end

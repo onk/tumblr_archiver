@@ -18,13 +18,20 @@ Bundler.require(*Rails.groups)
 
 module TumblrArchiver
   class Application < Rails::Application
-    Global.configure do |config|
-      config.backend :filesystem, environment: Rails.env.to_s, path: Rails.root.join("config/global").to_s
-    end
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.1
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    # Don't generate system test files.
+    config.generators.system_tests = nil
+
+    Global.configure do |config|
+      config.backend :filesystem, environment: Rails.env.to_s, path: Rails.root.join("config/global").to_s
+    end
+
     config.autoload_paths += Dir[Rails.root.join("lib/autoload")]
     config.time_zone = "Tokyo"
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]

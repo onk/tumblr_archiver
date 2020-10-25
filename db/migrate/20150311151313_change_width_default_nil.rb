@@ -1,4 +1,4 @@
-class ChangeWidthDefaultNil < ActiveRecord::Migration
+class ChangeWidthDefaultNil < ActiveRecord::Migration[4.2]
   def change
     change_column_null :photos, :width, true
     change_column_null :photos, :height, true

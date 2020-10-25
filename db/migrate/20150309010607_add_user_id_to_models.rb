@@ -1,4 +1,4 @@
-class AddUserIdToModels < ActiveRecord::Migration
+class AddUserIdToModels < ActiveRecord::Migration[4.2]
   def change
     add_column :photos, :user_id, :integer, null: false, after: :id
     remove_index :photos, :actor_id

@@ -1,4 +1,4 @@
-class CreatePosts < ActiveRecord::Migration
+class CreatePosts < ActiveRecord::Migration[4.2]
   def change
     create_table :posts do |t|
       t.integer  :original_id, limit: 8, null: false
