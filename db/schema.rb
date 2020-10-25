@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -13,55 +12,52 @@
 
 ActiveRecord::Schema.define(version: 20150311151313) do
 
-  create_table "actors", force: :cascade do |t|
-    t.string   "name",       limit: 255, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "actors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.integer  "user_id",          limit: 4,                   null: false
-    t.integer  "original_post_id", limit: 8,                   null: false
-    t.integer  "post_id",          limit: 4,                   null: false
-    t.integer  "actor_id",         limit: 4
-    t.integer  "width",            limit: 4
-    t.integer  "height",           limit: 4
-    t.string   "url",              limit: 255,                 null: false
-    t.string   "image",            limit: 255
-    t.string   "average_hash",     limit: 255
-    t.boolean  "has_downloaded",   limit: 1,   default: false, null: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+  create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id",                          null: false
+    t.bigint   "original_post_id",                 null: false
+    t.integer  "post_id",                          null: false
+    t.integer  "actor_id"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "url",                              null: false
+    t.string   "image"
+    t.string   "average_hash"
+    t.boolean  "has_downloaded",   default: false, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.index ["post_id"], name: "index_photos_on_post_id", using: :btree
+    t.index ["user_id", "actor_id"], name: "index_photos_on_user_id_and_actor_id", using: :btree
+    t.index ["user_id", "url"], name: "index_photos_on_user_id_and_url", using: :btree
   end
 
-  add_index "photos", ["post_id"], name: "post_id", using: :btree
-  add_index "photos", ["user_id", "actor_id"], name: "user_id_and_actor_id", using: :btree
-  add_index "photos", ["user_id", "url"], name: "user_id_and_url", using: :btree
-
-  create_table "posts", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4,               null: false
-    t.integer  "original_id", limit: 8,               null: false
-    t.string   "url",         limit: 255,             null: false
-    t.datetime "posted_at",                           null: false
-    t.integer  "photo_count", limit: 4,   default: 1, null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id",                 null: false
+    t.bigint   "original_id",             null: false
+    t.string   "url",                     null: false
+    t.datetime "posted_at",               null: false
+    t.integer  "photo_count", default: 1, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["user_id", "original_id"], name: "index_posts_on_user_id_and_original_id", unique: true, using: :btree
+    t.index ["user_id", "posted_at"], name: "index_posts_on_user_id_and_posted_at", using: :btree
+    t.index ["user_id", "url"], name: "index_posts_on_user_id_and_url", using: :btree
   end
 
-  add_index "posts", ["user_id", "original_id"], name: "user_id_and_original_id", unique: true, using: :btree
-  add_index "posts", ["user_id", "posted_at"], name: "user_id_and_posted_at", using: :btree
-  add_index "posts", ["user_id", "url"], name: "user_id_and_url", using: :btree
-
-  create_table "users", force: :cascade do |t|
-    t.string   "name",               limit: 255, null: false
-    t.string   "provider",           limit: 255, null: false
-    t.string   "provider_user_id",   limit: 255, null: false
-    t.string   "oauth_token",        limit: 255, null: false
-    t.string   "oauth_token_secret", limit: 255, null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",               null: false
+    t.string   "provider",           null: false
+    t.string   "provider_user_id",   null: false
+    t.string   "oauth_token",        null: false
+    t.string   "oauth_token_secret", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["provider", "provider_user_id"], name: "index_users_on_provider_and_provider_user_id", unique: true, using: :btree
   end
-
-  add_index "users", ["provider", "provider_user_id"], name: "provider_and_provider_user_id", unique: true, using: :btree
 
 end

@@ -28,6 +28,6 @@
 #     * **`url`**
 #
 
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
   has_many :photos, dependent: :destroy
 end

@@ -32,11 +32,11 @@
 #     * **`url`**
 #
 
-class Photo < ActiveRecord::Base
+class Photo < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   belongs_to :post
-  belongs_to :actor
+  belongs_to :actor, optional: true
 
   def suggest
     Photo.suggest(self.average_hash, self.id)

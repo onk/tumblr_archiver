@@ -1,10 +1,10 @@
 require "fastimage"
 require "tumblr_client"
 
-class FetchPhotosJob
-  include Sidekiq::Worker
+class FetchPhotosJob < ApplicationJob
+  queue_as :default
 
-  def perform
+  def perform(*args)
     User.all.each do |user|
       @user = user
       auth

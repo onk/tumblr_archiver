@@ -22,7 +22,7 @@
 #     * **`provider_user_id`**
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   def self.create_or_update_with_omniauth(auth)
     user = User.find_or_initialize_by(provider: auth["provider"], provider_user_id: auth["uid"])
 

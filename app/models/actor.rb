@@ -12,6 +12,6 @@
 # **`updated_at`**  | `datetime`         | `not null`
 #
 
-class Actor < ActiveRecord::Base
+class Actor < ApplicationRecord
   has_many :photos
 end
