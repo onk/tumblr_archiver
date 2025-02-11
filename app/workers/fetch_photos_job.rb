@@ -49,6 +49,7 @@ class FetchPhotosJob
           end
           photo[:image] = File.basename(original["url"])
           photo.save!
+          photo.reload
           @photos << photo
         end
       end
