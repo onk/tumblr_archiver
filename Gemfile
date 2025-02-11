@@ -7,7 +7,7 @@ gem "coffee-rails"
 gem "dotenv"
 gem "dotenv-rails"
 gem "fastimage", require: false
-gem "global", "< 2" # 2.0 対応がまだできてない
+gem "global"
 gem "jbuilder"
 gem "jquery-rails"
 gem "kaminari"
