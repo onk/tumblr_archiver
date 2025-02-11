@@ -11,7 +11,6 @@ end
 Sidekiq.configure_server do |config|
   config.redis = {
     url: RedisConnectionSetting.to_url(Global.redis.queue.to_hash),
-    namespace: Global.redis.queue.namespace,
   }
 
   schedule_file = Rails.root.join("config/schedule.yml")
@@ -22,6 +21,5 @@ end
 Sidekiq.configure_client do |config|
   config.redis = {
     url: RedisConnectionSetting.to_url(Global.redis.queue.to_hash),
-    namespace: Global.redis.queue.namespace,
   }
 end
