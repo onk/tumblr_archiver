@@ -1,6 +1,6 @@
 default:
-  consumer_key:    "CzARxuVpLCbPy3oC07I022FK1UEfhUMmkjg7lYmMFat3Hbv6JQ"
-  consumer_secret: "9cl2Ko3Mvwk5SM2zApx9iqLypocS4dQ3DHYao1uzoy8ML4kYDT"
+  consumer_key:    "dummy"
+  consumer_secret: "dummy"
 
 development:
 
