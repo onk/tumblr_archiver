@@ -54,10 +54,6 @@ GEM
     connection_pool (2.5.0)
     crass (1.0.6)
     date (3.4.1)
-    dotenv (2.8.1)
-    dotenv-rails (2.8.1)
-      dotenv (= 2.8.1)
-      railties (>= 3.2)
     erubis (2.7.0)
     et-orbi (1.2.11)
       tzinfo
@@ -256,8 +252,6 @@ PLATFORMS
 DEPENDENCIES
   carrierwave
   coffee-rails
-  dotenv
-  dotenv-rails
   fastimage
   global
   jbuilder
