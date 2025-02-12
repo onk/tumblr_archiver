@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2015_03_11_151313) do
+ActiveRecord::Schema[8.0].define(version: 2015_03_11_151313) do
   create_table "actors", id: :integer, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: nil, null: false
