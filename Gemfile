@@ -18,7 +18,6 @@ gem "puma"
 gem "rmagick"
 gem "sidekiq"
 gem "sidekiq-cron"
-gem "sinatra", require: false
 gem "slim-rails"
 gem "sprockets-rails"
 gem "stimulus-rails"
