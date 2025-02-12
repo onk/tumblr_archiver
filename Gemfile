@@ -1,12 +1,11 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem "rails", "5.2.8.1"
+gem "rails", "6.0.6.1"
 
 gem "activerecord-simple_index_name"
-gem "carrierwave"
 gem "bootsnap", require: false
-gem "coffee-rails"
+gem "carrierwave"
 gem "fastimage", require: false
 gem "global"
 gem "jbuilder"
@@ -24,7 +23,7 @@ gem "sinatra", require: false
 gem "slim-rails"
 gem "tumblr_client", require: false
 gem "turbolinks"
-gem "uglifier"
+gem "webpacker"
 
 group :development, :test do
   gem "byebug"
