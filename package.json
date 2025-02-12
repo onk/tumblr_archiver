@@ -1,5 +1,5 @@
 {
-  "name": "tumblr_archiver",
+  "name": "tumblr-archiver",
   "private": true,
   "dependencies": {
     "@rails/activestorage": "^6.0.0",

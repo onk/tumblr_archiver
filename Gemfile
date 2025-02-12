@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem "rails", "6.0.6.1"
+gem "rails", "6.1.7.10"
 
 gem "activerecord-simple_index_name"
 gem "bootsnap", require: false
@@ -31,8 +31,8 @@ end
 
 group :development do
   gem "listen"
+  gem "rack-mini-profiler"
   gem "spring"
-  gem "spring-watcher-listen"
   gem "web-console"
 end
 
