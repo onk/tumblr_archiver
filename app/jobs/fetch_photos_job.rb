@@ -1,5 +1,6 @@
 require "fastimage"
 require "tumblr_client"
+require "faraday"
 
 class FetchPhotosJob < ApplicationJob
   queue_as :default
@@ -63,7 +64,12 @@ class FetchPhotosJob < ApplicationJob
       next if photo.has_downloaded?
       begin
         FileUtils.mkdir_p(File.dirname(photo.image.path))
-        File.binwrite(photo.image.path, open(photo.url) { |f| f.read })
+        response = Faraday.get(photo.url)
+        if response.success?
+          File.binwrite(photo.image.path, response.body)
+        else
+          raise "Failed to download file: #{response.status}, #{photo.url}"
+        end
         photo.has_downloaded = true
         photo.average_hash   = AverageHash.calc_hash(Magick::Image.read(photo.image.path)[0])
         width, height = FastImage.size(photo.image.path)
