@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem "rails", "7.2.2.1"
+gem "rails", "8.0.1"
 
 gem "activerecord-simple_index_name"
 gem "bootsnap", require: false
