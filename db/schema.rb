@@ -12,13 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20150311151313) do
 
-  create_table "actors", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "actors", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "photos", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "photos", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
     t.integer "user_id", null: false
     t.bigint "original_post_id", null: false
     t.integer "post_id", null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20150311151313) do
     t.index ["user_id", "url"], name: "user_id_and_url"
   end
 
-  create_table "posts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "posts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
     t.integer "user_id", null: false
     t.bigint "original_id", null: false
     t.string "url", null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150311151313) do
     t.index ["user_id", "url"], name: "user_id_and_url"
   end
 
-  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
     t.string "name", null: false
     t.string "provider", null: false
     t.string "provider_user_id", null: false
