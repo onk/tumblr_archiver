@@ -21,7 +21,7 @@ gem "sidekiq"
 gem "sidekiq-cron"
 gem "sinatra", require: false
 gem "slim-rails"
-gem "tumblr_client", require: false
+gem "tumblr_client", require: false, github: "tumblr/tumblr_client", ref: "v0.8.6"
 gem "turbolinks"
 gem "webpacker"
 
