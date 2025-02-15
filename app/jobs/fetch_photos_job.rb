@@ -16,8 +16,8 @@ class FetchPhotosJob < ApplicationJob
 
   def auth
     Tumblr.configure do |config|
-      config.consumer_key       = Global.app.consumer_key
-      config.consumer_secret    = Global.app.consumer_secret
+      config.consumer_key       = Rails.application.credentials.consumer_key
+      config.consumer_secret    = Rails.application.credentials.consumer_secret
       config.oauth_token        = @user.oauth_token
       config.oauth_token_secret = @user.oauth_token_secret
     end
