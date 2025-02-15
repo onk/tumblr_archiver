@@ -39,10 +39,6 @@ module TumblrArchiver
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    Global.configure do |config|
-      config.backend :filesystem, environment: Rails.env.to_s, path: Rails.root.join("config/global").to_s
-    end
-
     config.autoload_paths += Dir[Rails.root.join("lib/autoload")]
     config.time_zone = "Tokyo"
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]

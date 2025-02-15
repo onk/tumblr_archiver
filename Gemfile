@@ -7,7 +7,6 @@ gem "activerecord-simple_index_name"
 gem "bootsnap", require: false
 gem "carrierwave"
 gem "fastimage", require: false
-gem "global"
 gem "importmap-rails"
 gem "jbuilder"
 gem "kamal", require: false

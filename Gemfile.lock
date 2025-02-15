@@ -154,8 +154,6 @@ GEM
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
-    global (3.0.0)
-      activesupport (>= 2.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
@@ -452,7 +450,6 @@ DEPENDENCIES
   carrierwave
   debug
   fastimage
-  global
   importmap-rails
   jbuilder
   kamal
