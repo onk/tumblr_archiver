@@ -11,7 +11,6 @@ gem "importmap-rails"
 gem "jbuilder"
 gem "kamal", require: false
 gem "kaminari"
-gem "mysql2"
 gem "omniauth"
 gem "omniauth-tumblr"
 gem "propshaft"
@@ -24,6 +23,7 @@ gem "solid_cache"
 gem "solid_queue"
 gem "stimulus-rails"
 gem "thruster", require: false
+gem "trilogy"
 gem "tumblr_client", require: false, github: "tumblr/tumblr_client", ref: "v0.8.6"
 gem "turbo-rails"
 

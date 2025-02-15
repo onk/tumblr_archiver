@@ -222,7 +222,6 @@ GEM
     msgpack (1.8.0)
     multi_json (1.15.0)
     multipart-post (2.4.1)
-    mysql2 (0.5.6)
     net-imap (0.5.6)
       date
       net-protocol
@@ -417,6 +416,7 @@ GEM
     thruster (0.1.11)
     tilt (2.6.0)
     timeout (0.4.3)
+    trilogy (2.9.0)
     turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
@@ -454,7 +454,6 @@ DEPENDENCIES
   jbuilder
   kamal
   kaminari
-  mysql2
   omniauth
   omniauth-tumblr
   propshaft
@@ -469,6 +468,7 @@ DEPENDENCIES
   solid_queue
   stimulus-rails
   thruster
+  trilogy
   tumblr_client!
   turbo-rails
   web-console
