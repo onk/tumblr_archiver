@@ -1,4 +1,4 @@
-default:
+default: &default
   data:
     host: localhost
     port: 6379
@@ -10,10 +10,14 @@ default:
     db: 2
 
 development:
+  <<: *default
 
 test:
+  <<: *default
 
 staging:
+  <<: *default
 
 production:
+  <<: *default
 
